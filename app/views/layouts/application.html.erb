@@ -1,36 +1,40 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DatingWebsite</title>
+  <title>Me&u</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
+  <script src="https://kit.fontawesome.com/c9611dadad.js" crossorigin="anonymous"></script>
+  <link href='https://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet'>
 </head>
 <body>
-  
   <nav class="top-bar">
-    <h1><a href="/">DatingWebsite</a></h1>
-
+    <%# <a href="/" class="logo"><%= image_tag("logo.png", alt: "Me&u") %> 
+    <%= link_to image_tag("logo.png", alt: "Me&u"), root_path, :class => "logo"%>
     <section class="top-bar-section">
-      <ul class="right">
+      <ul class="right menu">
         <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "button alert hollow" %></li>
         <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <li><%= link_to 'Sign Up', new_user_registration_path, :class => "button alert hollow"%></li>
+          <li><%= link_to 'Sign In', new_user_session_path, :class => "button alert hollow"%></li>
         <%- end -%>
       </ul>
     </section>
   </nav>
-
+  <div class="content">
   <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">
       <%= value %>
     </div>
   <%- end -%>
-
+  </div>
+  <div class="break-tag">
   <%= yield %>
-
+  </div>
   <%= javascript_include_tag 'application' %>
   
   <%- if Rails.env.development? || Rails.env.test? -%> 
@@ -40,6 +44,53 @@
   <%- end -%>
   <%= javascript_pack_tag 'application' %>
   
-  <%= yield :extra_footer %>
+    <footer class="page-footer">
+      <div class="icon-section">
+        <a href="https://www.linkedin.com/in/ziming-chen1/" target="_blank" class="icon-wrapper">
+          <div class="inner-wrapper">
+            <div class="front">
+              <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+            </div>
+            <div class="back">
+              <p>LinkedIn</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://github.com/Ziming15" target="_blank" class="icon-wrapper">
+          <div class="inner-wrapper">
+            <div class="front">
+              <i class="fa fa-github" aria-hidden="true"></i>
+            </div>
+            <div class="back">
+              <p>GitHub</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://launchpass.launchacademy.com/users/ZimingChen3098/launcher_profile" target="_blank" class="icon-wrapper">
+          <div class="inner-wrapper">
+            <div class="front">
+              <i class="fa fa-rocket" aria-hidden="true"></i>
+            </div>
+            <div class="back">
+              <p>Launch</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="mailto:zimingchen153@gmail.com" class="icon-wrapper">
+          <div class="inner-wrapper">
+            <div class="front">
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </div>
+            <div class="back">
+              <p>Email</p>
+            </div>
+          </div>
+        </a>
+      </div>
+        <p> Is a dating website.® <p>
+    </footer>
 </body>
 </html>
